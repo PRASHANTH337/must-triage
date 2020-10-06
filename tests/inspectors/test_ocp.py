@@ -69,6 +69,7 @@ class TestOCP:
 
         assert len(m_pod_ready.call_args_list) == pods_count(obj)
         assert len(m_restart_count.call_args_list) == pods_count(obj)
+        
         if 'error' in obj:
             assert obj in result[path]
 
