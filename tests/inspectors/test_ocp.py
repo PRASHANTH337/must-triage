@@ -151,3 +151,6 @@ class TestOCP:
     def test_pod_ready(self, obj, expected):
         result = OCP.pod_ready(obj)
         assert result == expected
+    def test_restart_count(self, obj, expected):
+        result = OCP.restart_count(obj)
+        assert result == expected
