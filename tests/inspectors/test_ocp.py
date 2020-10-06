@@ -42,6 +42,8 @@ class TestOCP:
         m_operator_success = p_operator_success.start()
         p_pod_ready = patch('must_triage.inspectors.ocp.OCP.pod_ready')
         m_pod_ready = p_pod_ready.start()
+        p_restart_count = patch('must_triage.inspectors.ocp.OCP.restart_count')
+        m_restart_count = p_restart_count.start()
         m_open = mock_open()
         with patch('must_triage.inspectors.ocp.open', m_open):
             if isinstance(obj, dict):
@@ -66,7 +68,7 @@ class TestOCP:
             return 0
 
         assert len(m_pod_ready.call_args_list) == pods_count(obj)
-
+        assert len(m_restart_count.call_args_list) == pods_count(obj)
         if 'error' in obj:
             assert obj in result[path]
 
