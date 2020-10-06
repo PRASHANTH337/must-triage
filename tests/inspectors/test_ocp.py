@@ -170,7 +170,7 @@ class TestOCP:
                         ),
                     ]),
                 ),
-                ["Container 'test_container' in pod 'test_pod' is not ready"],
+                ["Container 'test_container' in pod 'test_pod' has restart count"],
             ),
             (
                 dict(
