@@ -152,7 +152,7 @@ class TestOCP:
         result = OCP.pod_ready(obj)
         assert result == expected
         
-    @pytest.mark.parametrize(
+       @pytest.mark.parametrize(
         "obj,expected",
         [
             (
@@ -164,13 +164,13 @@ class TestOCP:
                             ready=False,
                             state=dict(
                                 terminated=dict(
-                                    reason='garbage',
+                                    restartCount='garbage',
                                 ),
                             ),
                         ),
                     ]),
                 ),
-                ["Container 'test_container' in pod 'test_pod' has restart count"],
+                ["Container 'test_container' in pod 'test_pod' has restart count: 0"],
             ),
             (
                 dict(
@@ -181,7 +181,7 @@ class TestOCP:
                             ready=False,
                             state=dict(
                                 terminated=dict(
-                                    reason='completed',
+                                    restartCount='completed',
                                     exitCode=0,
                                 ),
                             ),
@@ -201,7 +201,7 @@ class TestOCP:
                 )],
             ),
         ]
-    )    
+    )
     def test_restart_count(self, obj, expected):
         result = OCP.restart_count(obj)
         assert result == expected
